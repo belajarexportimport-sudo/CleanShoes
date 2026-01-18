@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Buku Panduan ShoeTrack</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #000;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            page-break-before: always;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #444;
+        }
+
+        .cover-page {
+            text-align: center;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            page-break-after: always;
+        }
+
+        .cover-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .cover-meta {
+            font-size: 1rem;
+            color: #888;
+        }
+
+        .toc {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            page-break-after: always;
+        }
+
+        .toc h2 {
+            page-break-before: auto;
+            border: none;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 5px;
+        }
+
+        .note {
+            background: #eeffff;
+            padding: 15px;
+            border-left: 5px solid #00aaaa;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Print Specifics */
+        @media print {
+            body {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <div class="cover-title">SHOETRACK</div>
+        <div class="cover-subtitle">Aplikasi Pencatatan & Tracking Order</div>
+        <div class="cover-meta">
+            <p><strong>Versi Aplikasi: 1.0 (White Label)</strong></p>
+            <p>Tahun: 2026</p>
+            <p><em>Powered by ZenSheet</em></p>
+        </div>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+        <h2>📋 DAFTAR ISI</h2>
+        <ul>
+            <li><strong>1. PENDAHULUAN</strong></li>
+            <li><strong>BAB 1:</strong> SISTEM LOGIN & KASIR (User Attribution)</li>
+            <li><strong>BAB 2:</strong> DASHBOARD UTAMA & INDIKATOR</li>
+            <li><strong>BAB 3:</strong> MENCATAT ORDER BARU & LAYANAN</li>
+            <li><strong>BAB 4:</strong> DAFTAR ORDER & STATUS</li>
+            <li><strong>BAB 5:</strong> MENU JADWAL (KALENDER) 📅</li>
+            <li><strong>BAB 6:</strong> DAILY REMINDER / LAPORAN HARIAN</li>
+            <li><strong>BAB 7:</strong> CETAK STRUK & NOTIFIKASI WA</li>
+            <li><strong>BAB 8:</strong> MANAJEMEN PENGELUARAN (EXPENSE)</li>
+            <li><strong>BAB 9:</strong> PEMBATALAN ORDER / VOID</li>
+            <li><strong>BAB 10:</strong> PENGATURAN TOKO (LOGO & LAYANAN)</li>
+        </ul>
+    </div>
+
+    <!-- CONTENT -->
+    <h2 id="intro">1. PENDAHULUAN</h2>
+    <p>Selamat datang di <strong>ShoeTrack</strong>! Aplikasi ini dirancang sebagai solusi All-in-One untuk bisnis
+        laundry sepatu dan perawatan barang. Aplikasi ini membantu Anda mencatat order, mengelola stok, mengatur harga,
+        dan memantau kinerja toko secara real-time.</p>
+
+    <h2 id="bab1">BAB 1: SISTEM LOGIN & KASIR 🔐</h2>
+    <p>Agar setiap transaksi tercatat dengan jelas:</p>
+    <ul>
+        <li><strong>Masuk Kerja (Login):</strong> Masukkan <strong>Nama Panggilan</strong> Anda.</li>
+        <li><strong>Tanda Tiap Transaksi:</strong> Setiap struk akan memuat nama Kasir/Admin yang bertugas.</li>
+        <li><strong>Ganti Shift:</strong> Klik nama Anda di Dashboard -> Logout saat selesai bertugas.</li>
+    </ul>
+
+    <h2 id="bab2">BAB 2: DASHBOARD UTAMA 📊</h2>
+    <p>Pusat kendali bisnis Anda:</p>
+    <ul>
+        <li><strong>Order Aktif:</strong> Jumlah sepatu yang masih ada di toko (belum diambil).</li>
+        <li><strong>Omzet Hari Ini:</strong> Total pendapatan kotor hari ini.</li>
+        <li><strong>Profit Bersih (Hijau):</strong> (Omzet - Pengeluaran). Indikator keuntungan riil harian.</li>
+        <li><strong>Stok Packaging:</strong> Indikator merah jika stok (Dust Bag/Goodie Bag) menipis (< 5 unit).</li>
+    </ul>
+
+    <h2 id="bab3">BAB 3: MENCATAT ORDER BARU 👟</h2>
+    <ul>
+        <li><strong>Data Pelanggan:</strong> Ketik nama pelanggan. Jika pelanggan lama, data akan muncul otomatis
+            (Autocomplete).</li>
+        <li><strong>Pilih Layanan:</strong> Klik layanan yang tersedia (Daftar layanan bisa diatur di Menu Pengaturan).
+        </li>
+        <li><strong>Estimasi Selesai:</strong> Default otomatis +3 hari. Bisa diubah manual dengan klik tombol
+            <strong>"Edit"</strong>.</li>
+        <li><strong>Stok Otomatis:</strong> Sistem otomatis mengurangi stok Dust Bag/Goodie Bag saat order disimpan.
+        </li>
+    </ul>
+
+    <h2 id="bab4">BAB 4: DAFTAR ORDER & STATUS 📝</h2>
+    <p>Pantau status setiap sepatu:</p>
+    <ul>
+        <li><strong>Status Flow:</strong> Antre (Kuning) -> Proses Cuci (Biru) -> Siap Ambil (Hijau) -> Selesai (Hitam).
+        </li>
+        <li><strong>Indikator Tepat Waktu:</strong>
+            <ul>
+                <li>🔴 <strong>Merah:</strong> Order Telat (Overdue) atau Jatuh Tempo Hari Ini! Segera kerjakan.</li>
+                <li>🔵 <strong>Biru/Hijau:</strong> Order masih aman (Jatuh tempo besok atau lusa).</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2 id="bab5">BAB 5: MENU JADWAL (KALENDER) 📅</h2>
+    <p>Klik ikon <strong>"Jadwal"</strong> 🗓️ di menu bawah.</p>
+    <ul>
+        <li><strong>Tampilan Bulanan:</strong> Melihat kepadatan order dalam satu bulan.</li>
+        <li><strong>Kode Titik:</strong>
+            <ul>
+                <li>🔴 Merah: Tanggal lewat (Ada tunggakan).</li>
+                <li>🟡 Kuning: Order Jatuh Tempo Hari Ini.</li>
+                <li>⚪ Putih: Order masa depan.</li>
+            </ul>
+        </li>
+        <li><strong>Detail:</strong> Klik tanggal pada kalender untuk melihat daftar order yang harus selesai.</li>
+    </ul>
+
+    <h2 id="bab6">BAB 6: DAILY REMINDER (LAPORAN HARIAN) 🚨</h2>
+    <p>Fitur asisten cerdas yang muncul setiap pagi:</p>
+    <ul>
+        <li><strong>Pop-up Otomatis:</strong> Melaporkan order apa saja yang <strong>Telat</strong> dan <strong>Harus
+                Selesai Hari Ini</strong>.</li>
+        <li><strong>Lapor Owner (WA):</strong> Klik satu tombol untuk mengirim laporan ringkas ke WhatsApp Owner/Grup
+            Tim.</li>
+    </ul>
+
+    <h2 id="bab7">BAB 7: CETAK STRUK & NOTIFIKASI WA 🖨️</h2>
+    <ul>
+        <li><strong>Cetak Fisik:</strong> Mendukung Printer Thermal Bluetooth (58mm).</li>
+        <li><strong>Kirim WA:</strong> Klik tombol WA di detail order untuk mengirim notifikasi siap ambil ke pelanggan.
+        </li>
+    </ul>
+
+    <h2 id="bab8">BAB 8: MANAJEMEN PENGELUARAN (EXPENSE) 📉</h2>
+    <p>Catat setiap uang keluar dari laci kasir (Beli sabun, Token Listrik, Makan Siang).</p>
+    <div class="note">
+        Pencatatan ini penting agar <strong>Profit Bersih</strong> di Dashboard akurat dan tidak semu.
+    </div>
+
+    <h2 id="bab9">BAB 9: PEMBATALAN ORDER / VOID 🛡️</h2>
+    <p>Jika terjadi kesalahan input atau pembatalan:</p>
+    <ul>
+        <li>Gunakan tombol <strong>"Batalkan / Void Order"</strong> berwarna merah.</li>
+        <li><strong>Wajib Isi Alasan:</strong> (Misal: "Customer Batal", "Salah Input").</li>
+        <li><strong>Efek:</strong> Uang dikembalikan (minus omzet) dan Stok barang dikembalikan otomatis.</li>
+    </ul>
+
+    <h2 id="bab10">BAB 10: PENGATURAN TOKO (PENTING!) ⚙️</h2>
+    <p>Menu ini adalah kunci fleksibilitas ShoeTrack. Anda bisa mengatur identitas toko sendiri:</p>
+
+    <h3>1. Identitas & Logo 🖼️</h3>
+    <ul>
+        <li><strong>Nama & Slogan:</strong> Ubah sesuai nama toko Anda.</li>
+        <li><strong>Upload Logo:</strong> Klik lingkaran logo (pojok kiri atas) atau tombol "Upload Logo" di pengaturan.
+            Pilih file gambar (PNG/JPG) dari HP/Laptop Anda.</li>
+    </ul>
+
+    <h3>2. Atur Layanan & Harga 🏷️</h3>
+    <ul>
+        <li>Anda bisa menambah, menghapus, atau mengubah nama layanan dan harga sesuka hati.</li>
+        <li>Contoh: Tambah "Fast Cleaning - 50rb", Hapus "Deep Clean".</li>
+        <li>Daftar ini akan langsung muncul di halaman Order Baru.</li>
+    </ul>
+
+    <h3>3. QRIS Pembayaran 💳</h3>
+    <ul>
+        <li><strong>Upload Gambar QRIS:</strong> Upload foto QRIS toko Anda.</li>
+        <li>Gambar QRIS akan muncul otomatis di Struk Digital/Print saat customer mau bayar non-tunai.</li>
+    </ul>
+
+    <h3>4. Aktivasi Google Sheet Sync ☁️</h3>
+    <p>Fitur ini memungkinkan data order tersimpan otomatis ke Google Sheet pribadi Anda.</p>
+    <ol>
+        <li>Buka Laptop, cari file bernama <code>KODE_GOOGLE_SHEET.txt</code> di dalam folder aplikasi.</li>
+        <li>Buka file tersebut, <strong>Copy</strong> semua kodenya.</li>
+        <li>Buka browser, buat <strong>Google Sheet Baru</strong>.</li>
+        <li>Klik menu <strong>Ekstensi > Apps Script</strong>.</li>
+        <li><strong>Paste</strong> kode tadi ke editor Apps Script (hapus kode bawaan).</li>
+        <li>Klik <strong>Terapkan (Deploy) > Web App Baru</strong>.</li>
+        <li>Pilih <em>"Who has access"</em> menjadi <strong>"Anyone" (Siapa saja)</strong>.</li>
+        <li>Copy <strong>URL Web App</strong> yang muncul.</li>
+        <li>Paste URL tersebut ke kolom <strong>Sync URL</strong> di menu Pengaturan ShoeTrack.</li>
+    </ol>
+
+    <hr style="margin-top: 50px;">
+    <p style="text-align: center; color: #888;">&copy; 2026 ZenSheet - ShoeTrack User Manual</p>
+
+</body>
+
+</html>

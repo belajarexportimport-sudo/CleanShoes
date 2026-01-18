@@ -1,0 +1,93 @@
+// ==========================================
+// KODE BACKEND GOOGLE SHEETS - SHOETRACK
+// ==========================================
+// 1. Buka Google Sheet Anda
+// 2. Klik menu "Ekstensi" > "Apps Script"
+// 3. Hapus semua kode yang ada, lalu Copy-Paste kode di bawah ini
+// 4. Klik "Terapkan" (Deploy) > "Web App Baru"
+// 5. Who has access: "Anyone" (Siapa saja)
+// 6. Copy URL Web App-nya ke pengaturan aplikasi ShoeTrack
+// ==========================================
+
+const SECURITY_PIN = "12345"; // GANTI PIN INI JIKA PERLU (Harus sama dengan di Aplikasi)
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    
+    // 1. Cek Keamanan
+    if (data.pin !== SECURITY_PIN) {
+      return ContentService.createTextOutput("Error: PIN Salah!");
+    }
+
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName('Database');
+    
+    // 2. Buat Sheet jika belum ada
+    if (!sheet) {
+      sheet = ss.insertSheet('Database');
+      sheet.appendRow(['ID', 'Customer', 'DateIn', 'Status', 'Full_JSON_Data']); // Header
+    }
+
+    // 3. Simpan Data (Overwrite / Timpa data lama agar sinkron)
+    //    Kita hapus data lama (kecuali Header) biar tidak duplikat
+    const lastRow = sheet.getLastRow();
+    if (lastRow > 1) {
+      sheet.getRange(2, 1, lastRow - 1, 5).clearContent();
+    }
+
+    const rows = [];
+    if (data.orders && data.orders.length > 0) {
+      data.orders.forEach(order => {
+        rows.push([
+          order.id,
+          order.customerName,
+          order.dateIn,
+          order.status,
+          JSON.stringify(order) // Simpan data lengkap sebagai JSON
+        ]);
+      });
+      
+      // Tulis ulang semua data (Bulk Write biar cepat)
+      sheet.getRange(2, 1, rows.length, 5).setValues(rows);
+    }
+    
+    // Simpan Settings Toko (Optional: Buat sheet info jika mau)
+    // ... bisa ditambahkan di sini
+
+    return ContentService.createTextOutput("Success: Data Berhasil Disimpan!");
+    
+  } catch (error) {
+    return ContentService.createTextOutput("Error: " + error.toString());
+  }
+}
+
+function doGet(e) {
+  try {
+    // 1. Cek Keamanan
+    if (!e.parameter.pin || e.parameter.pin !== SECURITY_PIN) {
+       return ContentService.createTextOutput(JSON.stringify({ error: "PIN Salah" })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName('Database');
+    
+    if (!sheet) {
+       return ContentService.createTextOutput(JSON.stringify([])).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // 2. Ambil Semua Data
+    const lastRow = sheet.getLastRow();
+    if (lastRow <= 1) {
+       return ContentService.createTextOutput(JSON.stringify([])).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const data = sheet.getRange(2, 5, lastRow - 1, 1).getValues(); // Ambil kolom ke-5 (Full_JSON_Data)
+    const orders = data.map(row => JSON.parse(row[0])); // Parse kembali jadi Object
+
+    return ContentService.createTextOutput(JSON.stringify(orders)).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ error: error.toString() })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
